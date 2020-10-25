@@ -13,23 +13,22 @@ void setup()
     initRam();
     Serial.begin(115200);
     
-    //testRam();    
+    testRam();    
     //fillRam(RAM_ADR, RAM_DATA_LEN);
     //testVga();
 
-    memorySnapshot(0);
-    toScreen(0, RAM_DATA_LEN);
+    // memorySnapshot(0);
+    // toScreen(0, RAM_DATA_LEN);
 }
 
 void loop()                    
 {}
 
 
-
 int memorySnapshot(int addr)
 {
   #if defined(ARDUINO_AVR_UNO)
-  int len = 2048;
+  int len = 32000;
   #else 
   Serial.println("Unsupported board");
   #endif

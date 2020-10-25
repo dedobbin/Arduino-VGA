@@ -3,7 +3,7 @@
 
 void initRam()
 {
-   /* setup SPI */
+  /* setup SPI */
   SPI.begin();
   SPI.setClockDivider(SPI_CLOCK_DIV4);
   pinMode(SS_PIN, OUTPUT);
@@ -57,11 +57,13 @@ void witeRam(char* input, long addr, long len)
   long i = 0;
   for (i = 0; i < len; i++) {
     SPI.transfer(input[i]);
+    Serial.println("test");
   }
 }
 
 
-/**** test functions ****/
+/****** test functions ******/
+
 void fillRam(long addr, long len)
 {
   char buffer[len];
@@ -71,8 +73,7 @@ void fillRam(long addr, long len)
     buffer[i+1] = 123;
     i+=1;
   }
-  witeRam(addr, buffer, len);
-  delay(100);    
+  witeRam(addr, buffer, len);  
 }
 
 void testRam()
@@ -81,7 +82,7 @@ void testRam()
   long addr = 32;
   char* buffer = "test";
   char* buffer2 = "";
-  long len = 4;
+  long len = 10;
   long i = 0;
   witeRam(buffer, addr, len);
   delay(100);
