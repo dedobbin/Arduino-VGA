@@ -24,10 +24,10 @@ void readRam(char* output, long addr, long len)
 {
   digitalWrite(SS_PIN, HIGH);
 
-  digitalWrite(SS_PIN, LOW);  
+  digitalWrite(SS_PIN, LOW);
   /* first byte is type rw */
   SPI.transfer(READ);
-  
+
   /* using 23LC1024 so i think address is next 3 bytes, not 2? */
   SPI.transfer((char)(addr >> 16));
   SPI.transfer((char)(addr >> 8));
@@ -38,22 +38,22 @@ void readRam(char* output, long addr, long len)
   long i = 0;
   for (i = 0; i < len; i++) {
     output[i] = SPI.transfer(0xFF);
-  }
+  }git
   digitalWrite(SS_PIN, HIGH);
 }
 
 void witeRam(char* input, long addr, long len)
 {
-   digitalWrite(SS_PIN, LOW);  
+  digitalWrite(SS_PIN, LOW);
   /* first byte is type rw */
   SPI.transfer(WRITE);
-  
+
   /* using 23LC1024 so i think address is next 3 bytes, not 2? */
   SPI.transfer((char)(addr >> 16));
   SPI.transfer((char)(addr >> 8));
   SPI.transfer((char)addr);
 
-  /* write */ 
+  /* write */
   long i = 0;
   for (i = 0; i < len; i++) {
     SPI.transfer(input[i]);
@@ -68,12 +68,12 @@ void fillRam(long addr, long len)
 {
   char buffer[len];
   int i = 0;
-  while(i <= len){
+  while (i <= len) {
     buffer[i] = 255;
-    buffer[i+1] = 123;
-    i+=1;
+    buffer[i + 1] = 123;
+    i += 1;
   }
-  witeRam(addr, buffer, len);  
+  witeRam(addr, buffer, len);
 }
 
 void testRam()
