@@ -32,8 +32,8 @@ int memorySnapshot(int addr)
   #else 
   Serial.println("Unsupported board");
   #endif
-
-  witeRam(addr, 0, len);
+  char buffer[] = "aaa";
+  witeRam(buffer, 0, len);
   return len;
 }
 
@@ -41,7 +41,7 @@ int memorySnapshot(int addr)
 void toScreen(long addr, int len)
 {
   /* Rather than using putpixel, just use vga buffer directly  */
-  readRam(addr, vgaxfb, len);
+  readRam((char*)vgaxfb, addr, len);
 }
 
 void testVga()
