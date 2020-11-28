@@ -9,11 +9,13 @@ VGAX vga;
 
 void setup()   
 {  
-    vga.begin();
-    initRam();
     Serial.begin(115200);
+    Serial.println("-----------------------");
+    initRam();
+    testRam();  
+      
+    //vga.begin();
     
-    testRam();    
     //fillRam(RAM_ADR, RAM_DATA_LEN);
     //testVga();
 
