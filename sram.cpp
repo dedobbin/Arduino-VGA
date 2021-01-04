@@ -33,7 +33,7 @@ void readRam(char* output, long addr, long len)
   digitalWrite(SS_PIN, HIGH); // disable
 }
 
-void witeRam(char* input, long addr, long len)
+void writeRam(char* input, long addr, long len)
 {
   digitalWrite(SS_PIN, LOW);  
   SPI.transfer(WRSR);
@@ -69,20 +69,5 @@ void fillRam(long addr, long len)
     buffer[i + 1] = 123;
     i += 1;
   }
-  witeRam(buffer, addr, len);
-}
-
-void testRam()
-{
-  /* some address, doesn't really matter */
-  long addr = 32;
-  char buffer[] = "test";
-  char buffer2[] = "    ";
-  long len = 4;
-  long i = 0;
-  witeRam(buffer, addr, len);
-  delay(100);
-  readRam(buffer2, addr, len);
-  delay(100);
-  Serial.println(buffer2);
+  writeRam(buffer, addr, len);
 }

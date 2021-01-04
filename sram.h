@@ -10,9 +10,7 @@
 #define RDSR  5
 
 void initRam();
-void witeRam(char* input, long addr, long len);
+void writeRam(char* input, long addr, long len);
 void readRam(char* output, long addr, long len);
-void testRam();
-void fillRam(long addr, long len);
 
 #endif
