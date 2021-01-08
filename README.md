@@ -1,7 +1,7 @@
 # Arduino-VGA-ram
 Arduino sketch to to display data from RAM chip on VGA screen
 <br><br>
-![](https://nop.koindozer.org/gh/ram-vga.png)
+![](https://nop.koindozer.org/gh/vga/ram-vga2.png)
 
 - 2 470Ω resistors
 - 2 68Ω resistors
@@ -12,4 +12,4 @@ Arduino sketch to to display data from RAM chip on VGA screen
 
 # Some nice test pattern
 <br><br>
-![](https://nop.koindozer.org/gh/testpattr.png)
+![](https://nop.koindozer.org/gh/vga/testpattr.png)
