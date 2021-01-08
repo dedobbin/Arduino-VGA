@@ -1,18 +1,12 @@
-#define FILL_RAM
+
 
 #include "sram.h"
-#ifndef FILL_RAM
 #include <VGAX.h>
-#endif
 
 int ram_addr = 0;
+int n_entries = 5;
 
-#ifndef FILL_RAM
 VGAX vga;
-#endif
-
-#ifdef FILL_RAM
-int n_entries = 30;
 
 void fill_ram()
 {
@@ -27,7 +21,7 @@ void fill_ram()
     byte y = rand()%VGA_HEIGHT;
     byte clr = rand()%3+1;
     
-    //vga.putpixel(automatons[i].x, automatons[i].y, automatons[i].type);
+    https://github.com/smaffer/vgax/blob/master/VGAX.h
     byte *p=vga_data + y*VGA_BWIDTH + (x>>2);
     byte bitpos=6-(x & 3)*2;
     *p=(*p & ~(3 <<bitpos)) | clr <<bitpos;
@@ -36,22 +30,17 @@ void fill_ram()
   initRam();
   writeRam(vga_data, ram_addr, sizeof(vga_data));
 }
-#endif
 
 void setup()   
 {  
-#ifndef FILL_RAM
   vga.begin();
   initRam();
-  readRam(vgaxfb, ram_addr, VGAX_HEIGHT*VGAX_BWIDTH);
-#else
-  fill_ram();
-#endif    
+  //fill_ram();
+  readRam(vgaxfb, ram_addr, VGAX_HEIGHT*VGAX_BWIDTH);  
 }
 
 void loop()                    
 {   
-#ifndef FILL_RAM
   for(;;){
     byte x = rand()%VGAX_WIDTH;
     byte y = rand()%VGAX_HEIGHT;
@@ -92,5 +81,4 @@ void loop()
 //      }
 //    }
 //  }
-#endif
 }
