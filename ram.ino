@@ -36,33 +36,57 @@ void setup()
   vga.begin();
   initRam();
   //fill_ram();
-  readRam(vgaxfb, ram_addr, VGAX_HEIGHT*VGAX_BWIDTH);  
+  readRam(vgaxfb, ram_addr, VGAX_HEIGHT*VGAX_BWIDTH);
+}
+
+byte audio_intense()
+{
+  //TODO: base on actual audio input
+  int val = analogRead(A0);
+  if (val < 500 && val > 20){
+   // constantly restarting gives intense glitchy output, also seems to corrupt something because it can result in smaller glitches which stay until vga.begin() is called again?
+    vga.begin();
+  }
+}
+
+int memptr = 0;
+
+byte audio_mem()
+{
+  //TODO: base on actual audio input
+  int val = analogRead(A0);
+  if (val > 500){
+    memcpy(vgaxfb, memptr++, VGAX_HEIGHT*VGAX_BWIDTH);
+  }
 }
 
 void loop()                    
-{   
-  for(;;){
-    byte x = rand()%VGAX_WIDTH;
-    byte y = rand()%VGAX_HEIGHT;
-    byte pix = vga.getpixel(x, y);
-    //TODO: pick pixel based on audio input
-    if (pix!=0){
-      if (x-1 >= 0){ 
-        vga.putpixel(x-1, y, pix);
-      }
-      if (x+1 < VGAX_WIDTH){
-        vga.putpixel(x+1, y, pix);
-      }
-      if (y-1 >= 0){
-        vga.putpixel(x, y-1, pix);
-      }
-      if (y+1 < VGAX_HEIGHT){
-        vga.putpixel(x, y+1, pix);
-      }
-      //TODO: flip on/off based on audio input
-      if (rand()%10==0){
-        vga.putpixel(x,y,rand()%3+1);
-      }
+{ 
+  byte x = rand()%VGAX_WIDTH;
+  byte y = rand()%VGAX_HEIGHT;
+  byte pix = vga.getpixel(x, y);
+
+  audio_intense();
+
+  audio_mem();
+
+  //TODO: maybe something faster? would also be nice if speed based on audio
+  if (pix!=0){
+    if (x-1 >= 0){ 
+      vga.putpixel(x-1, y, pix);
+    }
+    if (x+1 < VGAX_WIDTH){
+      vga.putpixel(x+1, y, pix);
+    }
+    if (y-1 >= 0){
+      vga.putpixel(x, y-1, pix);
+    }
+    if (y+1 < VGAX_HEIGHT){
+      vga.putpixel(x, y+1, pix);
+    }
+
+    if (rand()%10==0){
+      vga.putpixel(x,y,rand()%3+1);
     }
   }
 
