@@ -1,15 +1,20 @@
 # Arduino-VGA-ram
-Arduino sketch to to display data from RAM chip on VGA screen
-<br><br>
-![](https://nop.koindozer.org/gh/vga/ram-vga2.png)
+Arduino sketch to to display data from 23LCV2 RAM chip over VGA.  
 
-- 2 470Ω resistors
-- 2 68Ω resistors
-- 23LCV1024 chip (RAM)
+![pat](https://nop.koindozer.org/gh/arduino-vga/pat3.gif)
 
-# Dependencies
+## Hardware layout
+![](https://nop.koindozer.org/gh/arduino-vga/ram-vga5.svg)
+
+Note: unconnected holes are GND.
+Resistor values left to right:
+- 68Ω
+- 470Ω
+- 470Ω
+- 68Ω
+- 68Ω
+- 10KΩ
+- 10KΩ
+
+## Dependencies
 [VGAX](https://github.com/smaffer/vgax)
-
-# Some nice test pattern
-<br><br>
-![](https://nop.koindozer.org/gh/vga/testpattr.png)
