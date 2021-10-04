@@ -6,7 +6,7 @@ Arduino sketch to to display data from 23LCV2 RAM chip over VGA.
 ## Hardware layout
 ![](https://nop.koindozer.org/gh/arduino-vga/ram-vga5.svg)
 
-Note: unconnected holes are GND.
+Note: unconnected holes are GND.  
 Resistor values left to right:
 - 68Ω
 - 470Ω
